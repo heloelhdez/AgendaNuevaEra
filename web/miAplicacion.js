@@ -44,6 +44,7 @@ miAplicacion.controller('Principal',[
         }
         $scope.actividades=$scope.generaActividades();
         $scope.formaActividad={
+            nombreUsuario:'',
             idUsuario:'',
             id:'',
             nombre:'',
@@ -65,6 +66,7 @@ miAplicacion.controller('Principal',[
         $scope.actividadesGuardadas=[]
         $scope.copiaActividad=function(actividad){
             var copiaForma={
+                nombreUsuario:actividad.nombreUsuario,
                 idUsuario:actividad.idUsuario,
             	id:actividad.id,
                 nombre:actividad.nombre,
@@ -139,9 +141,17 @@ miAplicacion.controller('Principal',[
             }
         }
         $scope.modificaActividad=function(dia,hora){
-        	$http({
+            $http({
                 method: 'POST',
                 url: 'modificaActividad',
+                data: $httpParamSerializerJQLike($scope.actividades[dia][hora]),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+        }
+        $scope.compartirActividad=function(dia,hora){
+            $http({
+                method: 'POST',
+                url: 'compartirActividad',
                 data: $httpParamSerializerJQLike($scope.actividades[dia][hora]),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })

@@ -22,14 +22,17 @@
     </head>
     <body ng-app="miAplicacion" ng-controller="Principal">
         <%
-                    String tex = (String)request.getAttribute("id");
+                    String tex = (String)request.getAttribute("id");  
                     
                     ArrayList<actividad> actividades = (ArrayList<actividad>)request.getAttribute("actividades");
                     String ListaActividades=new Gson().toJson(actividades);
                     
+                   
+                    ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
+                    String ListaUsuarios =new Gson().toJson(usuarios);
                     
                     
-                    
+           
         %>
         <div class="agenda">
             <table>
@@ -55,10 +58,10 @@
                                         <option value="En curso">En curso</option>
                                         <option value="Terminada">Terminada</option>
                                     </select><br>
-                                    <input type="hidden" ng-model="actividades[dia][hora].idUsuario" value="<%
-                                      
+                                    <input type="hidden" ng-model="actividades[dia][hora].idUsuario" value="<%                                     
                                         out.write(tex);
                                     %>"/>
+                                    <input type="text" placeholder="Usuario con quien compartir:" ng-model="actividades[dia][hora].nombreUsuario"/><br>
                                     <button ng-click="compartirActividad(dia, hora)">Compartir Actividad</button>
                                     <button ng-click="modificaActividad(dia, hora)">Guardar cambios</button>
                                     <button ng-click="eliminarActividad(dia,hora)">Borrar Actividad</button>

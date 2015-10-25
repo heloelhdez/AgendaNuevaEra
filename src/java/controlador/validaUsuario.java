@@ -79,6 +79,8 @@ public class validaUsuario extends HttpServlet {
             throws ServletException, IOException {
         	baseDatos query = new baseDatos();
             ArrayList<actividad> actividades = new ArrayList<actividad>();
+            ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+            
             boolean respuesta;
             boolean valida;
             String nombre = request.getParameter("usuario");
@@ -93,13 +95,17 @@ public class validaUsuario extends HttpServlet {
                 request.setAttribute("id", id);
                 actividades = query.consultaActividades(id);
                 request.setAttribute("actividades", actividades);
+                usuarios = query.consultaUsuarios();
+                request.setAttribute("usuarios", usuarios);
                     RequestDispatcher rd;
                     rd = request.getRequestDispatcher("calendario.jsp");
                     rd.forward(request, response);
+                    
+            
             }
             else {
                 RequestDispatcher rd;
-        	rd = request.getRequestDispatcher("error.html");
+        	rd = request.getRequestDispatcher("errorlogin.html");
         	rd.forward(request, response);
         }
             doGet(request, response);

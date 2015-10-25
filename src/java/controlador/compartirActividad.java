@@ -23,17 +23,20 @@ public class compartirActividad extends HttpServlet
     public String formateaHora(String fecha){
  		return fecha.substring(11,16);
  	}
+        @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
+	{   
+                System.out.println("joseramon");
 		baseDatos query = new baseDatos();
-	        ArrayList<actividad> lista = new ArrayList<actividad>();
+	        ArrayList<actividad> lista = new ArrayList<>();
 	        boolean respuesta;
+                int idUsuario;
 	        int idActividad = Integer.parseInt(request.getParameter("id"));	        
-                int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+                String usuario = request.getParameter("nombreUsuario");
 	        int borr = 0;
-	        
-	           
-	        	      
+	        System.out.println("joseramon");
+	        idUsuario = Integer.parseInt(query.consultaIDUsuario(usuario));
+	        System.out.println("Jose Ramon quiere: "+idUsuario);
 	        respuesta = query.comparteActUsuario(idActividad, idUsuario);
 
 	        request.setAttribute("lista", lista);
@@ -41,13 +44,13 @@ public class compartirActividad extends HttpServlet
 	        if (respuesta)
 	        {
 	            RequestDispatcher rd;
-	            rd = request.getRequestDispatcher("calendario.jsp");
+	            rd = request.getRequestDispatcher("index.html");
 	            rd.forward(request, response);
 	        } 
 	        else
 	        {
 	            RequestDispatcher rd;
-	            rd = request.getRequestDispatcher("error.html");
+	            rd = request.getRequestDispatcher("errorCompartiendo.html");
 	            rd.forward(request, response);
 	        }
 		doGet(request, response);

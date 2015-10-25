@@ -112,7 +112,6 @@ public class baseDatos
 	    {
 	        int inserta = 0;
 	        String insercion = "update actividad set borrado=1 where id="+id+";";
-	        System.out.println("Ahi viene el id... Wait for it... Almost there..............."+id);
 	        Connection conn = getConnection();
 	        System.out.println("Valor de Conexion: " + conn);
 	        try
@@ -191,7 +190,6 @@ public class baseDatos
         	
         	while (rs.next()) {
                 String id = rs.getString("id");
-                System.out.println("El id es: "+id);
                 String us = rs.getString("nombre");
                 String pass = rs.getString("contrasena");
                 existe++;
@@ -273,7 +271,6 @@ public class baseDatos
         	
         	while (rs.next()) {
                  id = rs.getString("id");
-                    System.out.println("El id es: "+id);
                 String us = rs.getString("nombre");
                 String pass = rs.getString("contrasena");
                 existe++;
@@ -350,7 +347,6 @@ public class baseDatos
         	
         	while (rs.next()) {
                  id = rs.getString("id");
-                    System.out.println("El id es: "+id);
                 String us = rs.getString("nombre");
                 String pass = rs.getString("contrasena");
                 existe++;
@@ -393,7 +389,6 @@ public class baseDatos
     	
     	while (rs.next()) {
             int idActividad = Integer.parseInt(rs.getString("id"));
-            System.out.println("Creando actividad, su id es: "+idActividad);
             String nombre = rs.getString("nombre");
             int estado = Integer.parseInt(rs.getString("estado"));
             int avance = Integer.parseInt(rs.getString("avance"));
@@ -425,5 +420,88 @@ public class baseDatos
 
 
 }
+      public ArrayList<Usuario> consultaUsuarios() {
+	
+         
+	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    
+    String cL1 = "select * from usuario where activo=0";
+    String consultaLogin = cL1;
+    
+    
+    Connection conn = getConnection();
+    System.out.println("Valor de Conexion: " + conn);
+	
+    try {
+    	
+    	PreparedStatement stmt = conn.prepareStatement(consultaLogin);
+    	ResultSet rs = stmt.executeQuery();
+    	
+    	while (rs.next()) {
+            int id = Integer.parseInt(rs.getString("id"));
+            String nombre = rs.getString("nombre");
+            String contrasena = rs.getString("contrasena");
+            usuarios.add(new Usuario(id, nombre, contrasena));
+            
+
+            //lista.add(new Mensajes(id, nombre, pais));
+
+        }
+
+        
+    } catch (java.sql.SQLException e) {
+    	System.out.println("DB problem : " + e);
+    } finally {
+        try {
+            conn.close();
+        } catch (java.sql.SQLException e) {
+            System.out.println("DB problem : " + e);
+        }
+    }
+	
+    return usuarios;
+
+
+}
+      public String consultaIDUsuario(String usuario) {
+    	String id="0";
+    	int activo = 0;
+        String cL1 = "select * from usuario where ";
+        String cL2 = "nombre='" + usuario + "' and activo='" + activo + "';";
+        String consultaLogin = cL1 + cL2;
+        
+        Connection conn = getConnection();
+        System.out.println("Valor de Conexion: " + conn);
+        int existe=0;
+    	
+        try
+	        {
+	           
+        	PreparedStatement stmt = conn.prepareStatement(consultaLogin);
+        	ResultSet rs = stmt.executeQuery();
+        	
+        	while (rs.next()) {
+                 id = rs.getString("id");
+                String us = rs.getString("nombre");
+                existe++;
+
+	        }
+                }
+        catch (java.sql.SQLException e) 
+        {
+            System.out.println("DB problem : " + e);
+        }
+        finally
+        {
+            try { conn.close(); }
+            catch (java.sql.SQLException e) 
+            {
+                System.out.println("DB problem : " + e);
+            }
+        }
+
+	       return id;
+
+    }
             
 }

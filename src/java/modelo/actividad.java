@@ -76,7 +76,8 @@ public class actividad {
 	}
 	
 	public actividad(int id, int status, int avance, int borrado, String descripcion, String nombre, String dia_ini, String hora_ini, String dia_fin, String hora_fin){
-		this.status = status;
+		this.id=id;
+                this.status = status;
 		this.avance = avance;
 		this.borrado = borrado;
 		this.descripcion = descripcion;
