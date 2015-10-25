@@ -1,0 +1,52 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registro</title>
+        <script src="librerias/angular.js"></script>
+        <script src="miAplicacion.js"></script>
+        <script src="librerias/jquery.js"></script>
+        <meta charset="UTF-8">
+        <link  rel="stylesheet" href="estilo.css"> 
+         <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+        $scope.usuario= "Place your username";
+        $scope.contrasenia= "Place your password";  
+        });
+        
+        $.ajax({
+            url: "validaUsuario",
+            type: "POST",
+            dataType: "json",
+            data: {usuario:$scope.usuario, contrasenia:$scope.contrasenia},
+            cache: false
+        })
+        .done(function(json,otro,c) {
+            console.log("success");
+         })
+        .error(function(a,b,c) {
+            console.log("error")
+        });
+        
+        
+        
+    </script>
+    </head>
+    <body>
+        <form action="validaUsuario" method="POST">
+           Usuario: <input type="text" ng-model="usuario" name="usuario"><br>
+           Password: <input type="text" ng-model="contrasenia" name="contrasenia"><br>
+           <input type="submit" value="Log In">
+        </form>
+        <p>No tienes cuenta? Obtenla <a href="registrausuario.html"> aquí</a></p>
+        <br>
+        <p>Quieres borrar tu usuario. Hazlo <a href="borrarusuario.html"> aquí</a></p>
+       
+    </body>
+</html>

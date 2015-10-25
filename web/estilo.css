@@ -1,0 +1,85 @@
+.formaActividad{
+	text-align:center;
+    position:fixed;
+    margin-left:80%;
+    top:10%;
+    border-radius:10px;
+    border: 2px solid #FFA500;
+    width:200px;
+    height:170px;
+}
+.agenda {
+	float:left;
+	line-height: 1.5em;
+	padding: 2em 0 3em;
+	width: 90%;
+	max-width: 1000px;
+	overflow: hidden;
+}
+table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    background: #fff;
+}
+td, th{
+    padding: 0.75em 1.5em;
+    text-align:center;
+}
+th {
+    background-color: #FFA500;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+tbody th {
+	width:5%;
+	background-color: #E59400;
+}
+tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+tbody tr:hover {
+    background-color: rgba(129,208,177,.3);
+}
+
+/* Todo lo que tiene que ver con el jquery para hacer el cambio */
+.muchSwag {
+	overflow-x: auto;
+	overflow-y: hidden;
+	position: relative;
+	margin: 3em 0;
+	width: 100%;
+}
+.muchSwag .muchThead,
+.muchSwag .muchCol,
+.muchSwag .muchIntersect {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all .125s ease-in-out;
+	z-index: 50;
+	width: auto;
+}
+.muchSwag .muchThead {
+	box-shadow: 0 0.25em 0.1em -0.1em rgba(0,0,0,.125);
+	z-index: 100;
+	width: 100%;
+}
+.muchSwag .muchIntersect {
+	opacity: 1;
+	z-index: 150;
+}
+.muchSwag .muchIntersect th {
+	background-color: #666;
+	color: #eee;
+}
+.muchSwag td,
+.muchSwag th {
+	box-sizing: border-box;
+}
+.muchSwag.overflow-y {
+	overflow-y: auto;
+	max-height: 50vh;
+}
