@@ -44,7 +44,7 @@ public class nuevoUsuario extends HttpServlet
                 if (respuesta)
                 {
                     RequestDispatcher rd;
-                    rd = request.getRequestDispatcher("index.jsp");
+                    rd = request.getRequestDispatcher("index.html");
                     rd.forward(request, response);
                 } 
                 else

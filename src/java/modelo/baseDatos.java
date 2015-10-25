@@ -74,6 +74,40 @@ public class baseDatos
 	        	return false;
 	    }
             
+            public boolean modificaActividad(String nombre, int estado, int avance, String descripcion, String diaini, String horaini, String diafin, String horafin, int borrado, int idUsuario, int id)
+	    {
+	        int inserta = 0;
+	        String insercion = "update actividad SET nombre='" + nombre+ "', estado=" +estado+ ", avance=" +avance+ ", descripcion='" +descripcion+ "', dia_ini='" +diaini+ "', hora_ini='" +horaini+ "', dia_fin='" +diafin+ "', hora_fin='" +horafin+ "', borrado=" +borrado+ " where id="+id+"";
+	                       
+                Connection conn = getConnection();
+	        System.out.println("Valor de Conexion: " + conn);
+                int insertaAct = 0;
+                String ultimoId = null;
+	        try
+	        {
+	            Statement stmt = (Statement) conn.createStatement();
+                    insertaAct = stmt.executeUpdate(insercion);
+                    
+                }
+	        catch (java.sql.SQLException e) 
+	        {
+	            System.out.println("DB problem : " + e);
+	        }
+	        finally
+	        {
+	            try { conn.close(); }
+	            catch (java.sql.SQLException e) 
+	            {
+	                System.out.println("DB problem : " + e);
+	            }
+	        }
+
+	        if (inserta > 0)
+	            return true;
+	        else 
+	        	return false;
+	    }
+            
 	    public boolean borrarActividad(int id)
 	    {
 	        int inserta = 0;
@@ -157,7 +191,7 @@ public class baseDatos
         	
         	while (rs.next()) {
                 String id = rs.getString("id");
-                    System.out.println("El id es: "+id);
+                System.out.println("El id es: "+id);
                 String us = rs.getString("nombre");
                 String pass = rs.getString("contrasena");
                 existe++;
@@ -261,7 +295,41 @@ public class baseDatos
 
 	       return id;
 
-    }    
+    }
+     public boolean comparteActUsuario(int idActividad, int idUsuario)
+	    {
+	        
+              
+                int inserta = 0;
+                
+                String insercion = " insert into usuario_actividad (id_actividad, id_usuario)" + " values ('" + idActividad+ "', '" +idUsuario+ "')";
+	        Connection conn = getConnection();
+	        System.out.println("Valor de Conexion: " + conn);
+
+	        try
+	        {
+	            Statement stmt = (Statement) conn.createStatement();
+	            inserta = stmt.executeUpdate(insercion);
+	        }
+	        catch (java.sql.SQLException e) 
+	        {
+	            System.out.println("DB problem : " + e);
+	        }
+	        finally
+	        {
+	            try { conn.close(); }
+	            catch (java.sql.SQLException e) 
+	            {
+	                System.out.println("DB problem : " + e);
+	            }
+	        }
+
+	        if (inserta > 0)
+	            return true;
+	        else 
+	        	return false;
+	    	
+         }
      public String consultaIDACtividad(String usuario, String passwd) {
     	String id="0";
     	int activo = 0;

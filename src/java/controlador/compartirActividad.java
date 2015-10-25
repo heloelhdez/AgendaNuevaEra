@@ -13,28 +13,43 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.baseDatos;
 import modelo.actividad;
 
-@WebServlet("/borrarActividad")
-public class borrarActividad extends HttpServlet 
+@WebServlet("/compartirActividad")
+public class compartirActividad extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
        
-    public borrarActividad() { super(); }
-
+    public compartirActividad() { super(); }
+    
     public String formateaHora(String fecha){
  		return fecha.substring(11,16);
  	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		 baseDatos query = new baseDatos();
+		baseDatos query = new baseDatos();
 	        ArrayList<actividad> lista = new ArrayList<actividad>();
 	        boolean respuesta;
+	        int idActividad = Integer.parseInt(request.getParameter("id"));	        
+                int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+	        int borr = 0;
 	        
-	        String idString= request.getParameter("id");
-	        int id = Integer.parseInt(idString);
-	      
+	           
+	        	      
+	        respuesta = query.comparteActUsuario(idActividad, idUsuario);
+
 	        request.setAttribute("lista", lista);
 
-	        
+	        if (respuesta)
+	        {
+	            RequestDispatcher rd;
+	            rd = request.getRequestDispatcher("calendario.jsp");
+	            rd.forward(request, response);
+	        } 
+	        else
+	        {
+	            RequestDispatcher rd;
+	            rd = request.getRequestDispatcher("error.html");
+	            rd.forward(request, response);
+	        }
 		doGet(request, response);
 	}
 }

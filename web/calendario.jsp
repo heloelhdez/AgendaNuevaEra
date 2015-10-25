@@ -59,6 +59,7 @@
                                       
                                         out.write(tex);
                                     %>"/>
+                                    <button ng-click="compartirActividad(dia, hora)">Compartir Actividad</button>
                                     <button ng-click="modificaActividad(dia, hora)">Guardar cambios</button>
                                     <button ng-click="eliminarActividad(dia,hora)">Borrar Actividad</button>
                                 </div>

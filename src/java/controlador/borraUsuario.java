@@ -98,7 +98,7 @@ public class borraUsuario extends HttpServlet {
                 if (respuesta)
                 {
                     RequestDispatcher rd;
-                    rd = request.getRequestDispatcher("login.html");
+                    rd = request.getRequestDispatcher("index.html");
                     rd.forward(request, response);
                 } 
                 else

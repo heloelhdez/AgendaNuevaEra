@@ -94,7 +94,7 @@ public class validaUsuario extends HttpServlet {
                 actividades = query.consultaActividades(id);
                 request.setAttribute("actividades", actividades);
                     RequestDispatcher rd;
-                    rd = request.getRequestDispatcher("index.jsp");
+                    rd = request.getRequestDispatcher("calendario.jsp");
                     rd.forward(request, response);
             }
             else {

@@ -13,19 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.baseDatos;
 import modelo.actividad;
 
-@WebServlet("/nuevaActividad")
-public class nuevaActividad extends HttpServlet 
+@WebServlet("/modificaActividad")
+public class modificaActividad extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
        
-    public nuevaActividad() { super(); }
+    public modificaActividad() { super(); }
     
     public String formateaHora(String fecha){
  		return fecha.substring(11,16);
  	}
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		baseDatos query = new baseDatos();
+		 baseDatos query = new baseDatos();
 	        ArrayList<actividad> lista = new ArrayList<actividad>();
 	        boolean respuesta;
 	        String nombre = request.getParameter("nombre");	        
@@ -36,6 +37,7 @@ public class nuevaActividad extends HttpServlet
 	        String horaini = formateaHora(request.getParameter("horaInicio"));
 	        String diafina = request.getParameter("diaFin");
 	        String horafina = formateaHora(request.getParameter("horaFin"));
+                int id=Integer.parseInt(request.getParameter("id"));
 	           System.out.println("Nombre: "+nombre);
 	        System.out.println(horaini);
 	        
@@ -58,7 +60,7 @@ public class nuevaActividad extends HttpServlet
 	        		break;
 	        }     
 	        	      
-	        respuesta = query.insertaActividad(nombre, est, avan, descripcion, diaini, horaini, diafina, horafina, borr, idUsuario);
+	        respuesta = query.modificaActividad(nombre, est, avan, descripcion, diaini, horaini, diafina, horafina, borr, idUsuario, id);
 
 	        request.setAttribute("lista", lista);
 
