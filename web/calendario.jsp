@@ -21,6 +21,7 @@
         <link text="text/css" rel="stylesheet" href="estilo.css"> 
     </head>
     <body ng-app="miAplicacion" ng-controller="Principal">
+        <div class="laAgenda"></div>
         <%
                     String tex = (String)request.getAttribute("id");  
                     
