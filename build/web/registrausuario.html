@@ -38,12 +38,17 @@ and open the template in the editor.
     </script>
     </head>
     <body>
-        <form action="nuevoUsuario" method="POST">
-           Usuario: <input type="text" ng-model="usuario" name="usuario"><br>
-           Password: <input type="password" ng-model="contrasenia" name="contrasenia"><br>
-           <input type="submit" value="Registrar">
-           <a href="index.html">Atras</a>
-        </form>
-        
+        <div class="fondo"></div>
+        <div class="loginCentered">.</div>
+        <div class="loginCentered" align="center" id="login">
+            <form action="nuevoUsuario" method="POST">
+                <table>
+                    <tr><th>Usuario: </th><th><input type="text" ng-model="usuario" name="usuario"></th></tr><br><br>
+                    <tr><th>Password: </th><th><input type="password" ng-model="contrasenia" name="contrasenia"></th></tr><br><br>
+                    <tr><th><a href="index.html">Atras</a></th>
+                    <th><input type="submit" value="Registrar"></th></tr><br>
+                </table>
+            </form>
+        </div>
     </body>
 </html>

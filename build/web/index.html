@@ -7,7 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro</title>
+        <title>Log-in</title>
         <script src="librerias/angular.js"></script>
         <script src="miAplicacion.js"></script>
         <script src="librerias/jquery.js"></script>
@@ -39,14 +39,18 @@ and open the template in the editor.
     </script>
     </head>
     <body>
-        <form action="validaUsuario" method="POST">
-           Usuario: <input type="text" ng-model="usuario" name="usuario"><br>
-           Password: <input type="password" ng-model="contrasenia" name="contrasenia"><br>
-           <input type="submit" value="Log In">
-        </form>
-        <p>No tienes cuenta? Obtenla <a href="registrausuario.html"> aquí</a></p>
-        <br>
-        <p>Quieres borrar tu usuario. Hazlo <a href="borrarusuario.html"> aquí</a></p>
-       
+        <div class="fondo"></div>
+        <div class="loginCentered">.</div>
+        <div class="loginCentered" align="center" id="login">
+            <form action="validaUsuario" method="POST">
+                <table>
+                    <tr><th>Usuario: </th><th><input type="text" ng-model="usuario" name="usuario"></th></tr><br><br>
+                    <tr><th>Password: </th><th><input type="password" ng-model="contrasenia" name="contrasenia"></th></tr><br><br>
+                    <tr><th></th><th><input type="submit" value="Log In"></th></tr><br>
+                </table>
+            </form>
+            <p>No tienes cuenta? Obtenla <a href="registrausuario.html"> aquí</a></p>
+            <p>Quieres borrar tu usuario. Hazlo <a href="borrarusuario.html"> aquí</a></p>
+        </div>
     </body>
 </html>

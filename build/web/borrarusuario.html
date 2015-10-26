@@ -39,12 +39,19 @@ and open the template in the editor.
     </script>
     </head>
     <body>
-        <form action="borraUsuario" method="POST">
-           Pon tu usuario y contraseña para poder borrar.<br>
-            Usuario: <input type="text" ng-model="usuario" name="usuario"><br>
-           Password: <input type="password" ng-model="contrasenia" name="contrasenia"><br>
-           <input type="submit" value="Log In">
-           <a href="index.html">Atras</a>
-        </form>
+        <div class="fondo"></div>
+        <br><br><br>
+        <div align="center"><h1>Pon tu usuario y contraseña para poder borrar la cuenta.</h1></div>
+        <div class="loginCentered">.</div>
+        <div class="loginCentered" align="center" id="login">
+            <form action="borraUsuario" method="POST">
+                <table>
+                    <tr><th>Usuario: </th><th><input type="text" ng-model="usuario" name="usuario"></th></tr><br><br>
+                    <tr><th>Password: </th><th><input type="password" ng-model="contrasenia" name="contrasenia"></th></tr><br><br>
+                    <tr><th><a href="index.html">Atras</a></th>
+                    <th><input type="submit" value="Log In"></th></tr><br>
+                </table>
+            </form>
+        </div>
     </body>
 </html>
