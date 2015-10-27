@@ -9,6 +9,12 @@
     width:200px;
     height:200px;
 }
+#lateralArriba{
+  top:10%;  
+}
+#lateralAbajo{
+  top:40%;  
+}
 .agenda {
 	float:left;
 	line-height: 1.5em;

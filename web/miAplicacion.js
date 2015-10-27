@@ -156,5 +156,13 @@ miAplicacion.controller('Principal',[
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         }
+        $scope.eliminarUsuario=function(){
+            $http({
+                method: 'POST',
+                url: 'borraUsuario',
+                data: $httpParamSerializerJQLike($scope.formaActividad),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+        }
     }
 ]);

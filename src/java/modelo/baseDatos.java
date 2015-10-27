@@ -216,13 +216,13 @@ public class baseDatos
 
     }
          
-     public boolean borraUsuario(String nombre, String contra)
+     public boolean borraUsuario(int id)
 	    {
 	        
-                
                 int inserta = 0;
                 int activar =1; 
-                 String insercion = " UPDATE usuario SET activo='"+activar+"' WHERE nombre='" + nombre+ "'";
+                System.out.println("borrar id: "+id);
+                 String insercion = " UPDATE usuario SET activo='"+activar+"' WHERE id='" +id+ "'";
 	        Connection conn = getConnection();
 	        System.out.println("Valor de Conexion: " + conn);
 

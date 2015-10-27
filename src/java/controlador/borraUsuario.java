@@ -74,24 +74,18 @@ public class borraUsuario extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-         baseDatos query = new baseDatos();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            baseDatos query = new baseDatos();
             ArrayList<Usuario> lista = new ArrayList<Usuario>();
             boolean respuesta;
-            boolean valida;
-            String nombre = request.getParameter("usuario");
-            String contrasena = request.getParameter("contrasenia");
-            
-            valida = query.consultaDB(nombre, contrasena);
-            System.out.println(valida);
-            if(valida){
+            String idString = request.getParameter("idUsuario");
+            int id = Integer.parseInt(idString);
             //boolean hayUsuario = query.hayUsuario(nombre, contrasena);
             
             //if(hayUsuario){
             
               //Este le habla al metodo de abajo que tengo en modelo/baseDatos
-                respuesta = query.borraUsuario(nombre, contrasena);
+                respuesta = query.borraUsuario(id);
     
                 request.setAttribute("lista", lista);
     
@@ -107,24 +101,11 @@ public class borraUsuario extends HttpServlet {
                     rd = request.getRequestDispatcher("error.html");
                     rd.forward(request, response);
                 }
-            doGet(request, response);
+                doGet(request, response);
         //}
             }
-            else {
-                RequestDispatcher rd;
-        	rd = request.getRequestDispatcher("error.html");
-        	rd.forward(request, response);
-        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
-}
+
+

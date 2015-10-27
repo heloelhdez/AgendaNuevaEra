@@ -20,21 +20,16 @@
         <meta charset="UTF-8">
         <link text="text/css" rel="stylesheet" href="estilo.css"> 
     </head>
-    <body ng-app="miAplicacion" ng-controller="Principal">
-        <div class="fondo"></div>
-        <%
+    <%
                     String tex = (String)request.getAttribute("id");  
-                    
                     ArrayList<actividad> actividades = (ArrayList<actividad>)request.getAttribute("actividades");
                     String ListaActividades=new Gson().toJson(actividades);
-                    
-                   
                     ArrayList<Usuario> usuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
                     String ListaUsuarios =new Gson().toJson(usuarios);
-                    
-                    
-           
-        %>
+                    System.out.print(ListaActividades);
+   %>
+    <body ng-app="miAplicacion" ng-controller="Principal" ng-init="formaActividad.idUsuario='<% out.write(tex); %>'">
+        <div class="fondo"></div>
         <div class="agenda">
             <table>
                 <thead>
@@ -74,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="formaActividad" align="center">
+        <div class="formaActividad" align="center" id="lateralArriba">
             <input type="text" placeholder="Nombre" ng-model="formaActividad.nombre"></input><br>
     	    <input type="text" placeholder="DescripciÃ³n" ng-model="formaActividad.descripcion"></input><br>    
             <label>Avance: </label>
@@ -85,11 +80,6 @@
             </select>
             
             <br>
-            Estado: <select ng-model="formaActividad.idUsuario">
-    	        <option value="<%
-                                        out.write(tex);
-                                    %>">No iniciada</option>
-            </select><br>
             <label>Dia de inicio: {{ formaActividad.diaInicio }}</label><br>
             <label>Hora de inicio: {{ formaActividad.horaInicio | date:"HH:mm" }}</label><br>
 
@@ -97,7 +87,11 @@
 
             <label>Hora de finalización: {{ formaActividad.horaFin | date:"HH:mm" }}</label><br>
             
-	    <button ng-click="nuevaActividad()">Guardar</button>
+	        <button ng-click="nuevaActividad()">Guardar</button>
 	</div>
+            <div class="formaActividad" align="center" id="lateralAbajo">
+            <p>Eliminar usuario:</p>
+            <button ng-click="eliminarUsuario()">Eliminar</button>
+            </div>
     </body>
 </html>

@@ -34,7 +34,7 @@ public class compartirActividad extends HttpServlet
 	        int idActividad = Integer.parseInt(request.getParameter("id"));	        
                 String usuario = request.getParameter("nombreUsuario");
 	        int borr = 0;
-	        System.out.println("joseramon");
+	        System.out.println("El id de la actividad es: "+idActividad);
 	        idUsuario = Integer.parseInt(query.consultaIDUsuario(usuario));
 	        System.out.println("Jose Ramon quiere: "+idUsuario);
 	        respuesta = query.comparteActUsuario(idActividad, idUsuario);
