@@ -1,7 +1,7 @@
 var miAplicacion = angular.module("miAplicacion", []);
 
 miAplicacion.controller('Principal',[
-    '$scope', '$http', '$httpParamSerializerJQLike', function($scope,$http,$httpParamSerializerJQLike){
+    '$scope', '$http', '$window', '$httpParamSerializerJQLike', function($scope,$http,$window,$httpParamSerializerJQLike){
     	$scope.indice=1
         $scope.title='hola'
         $scope.indice=1;
@@ -163,6 +163,7 @@ miAplicacion.controller('Principal',[
                 data: $httpParamSerializerJQLike($scope.formaActividad),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
+            $window.location.href = 'index.html';
         }
     }
 ]);
